@@ -30,8 +30,8 @@ class _MySplashState extends State<MySplash> {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.blue,
-            Colors.blueAccent,
+            Color(0x11232526),
+            Color(0xFF232526),
           ],
           stops: [
             0.004,
