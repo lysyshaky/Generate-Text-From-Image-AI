@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,6 +13,37 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool _isLoading = true;
+  late File _image;
+  final picker = ImagePicker();
+  String resultText = 'Fetching result...';
+
+  pickImage() async {
+    var image = await picker.getImage(source: ImageSource.camera);
+
+    if (image == null) {
+      return null;
+    }
+
+    setState(() {
+      _image = File(image.path);
+      _isLoading = false;
+    });
+  }
+
+  pickGalleryImage() async {
+    var image = await picker.getImage(source: ImageSource.gallery);
+
+    if (image == null) {
+      return null;
+    }
+
+    setState(() {
+      _image = File(image.path);
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +99,110 @@ class _HomeState extends State<Home> {
                       spreadRadius: 5,
                       blurRadius: 7,
                       offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Container(
+                        width: 500,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            Container(
+                              width: 120,
+                              child: Image.asset('assets/notepad.png'),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width -
+                                          180,
+                                      alignment: Alignment.center,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 18),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xff56ab2f),
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: const Text('Live Camera',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width -
+                                          180,
+                                      alignment: Alignment.center,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 18),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xff56ab2f),
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: const Text('Camera Roll',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width -
+                                          180,
+                                      alignment: Alignment.center,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 18),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xff56ab2f),
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: const Text('Take a Photo',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),

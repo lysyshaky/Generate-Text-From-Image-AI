@@ -38,7 +38,7 @@ class _MySplashState extends State<MySplash> {
             1
           ]),
       image: Image.asset('assets/notepad.png'),
-      photoSize: 120,
+      photoSize: 80,
       loaderColor: Colors.white,
     );
   }
