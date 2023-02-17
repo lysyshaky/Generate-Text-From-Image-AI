@@ -39,6 +39,9 @@ dependencies:
   image_picker: 
   http_parser: 
   splashscreen: 
+  camera: ^0.5.8+2
+  path_provider: ^1.4.5
+  mime: 
 
 dev_dependencies:
   flutter_test:
